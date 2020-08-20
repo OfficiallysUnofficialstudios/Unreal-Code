@@ -72,3 +72,11 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
+
+# Mac Artifacts
+.DS_Store
+
+# Vim Artifacts
+*.swp
+*.swo
+.ctrlp_cache/
