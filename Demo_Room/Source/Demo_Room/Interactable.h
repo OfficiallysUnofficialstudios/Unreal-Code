@@ -8,7 +8,7 @@
 #include "Interactable.generated.h"
 
 UCLASS()
-class DEMO_ROOM_API AInteractable : public AActor
+class DEMO_ROOM_API AInteractable : public AActor, public IInteractInterface
 {
 	GENERATED_BODY()
 	

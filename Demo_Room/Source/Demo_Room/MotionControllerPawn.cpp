@@ -73,19 +73,19 @@ void AMotionControllerPawn::LineCast_Implementation() {
 	// ECC_Visibility is a line trace channel, see different trace channels (what you want to hit) in capsule collision settings
 	// https://docs.unrealengine.com/en-US/Engine/Physics/Tracing/Overview/index.html ,,, we may need to change it from line to other shape
 	bool HitResult = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECC_Visibility, TraceParams); 
-	DrawDebugLine(GetWorld(), Location, End, FColor::Blue, false, 2.0f);
+	//DrawDebugLine(GetWorld(), Location, End, FColor::Blue, false, 2.0f);
 
 	if (HitResult == true) {
 
 		// drawing a box to see the hit for now
-		DrawDebugBox(GetWorld(), Hit.ImpactPoint, FVector(5, 5, 5), FColor::Emerald, false, 2.0f);
+		//DrawDebugBox(GetWorld(), Hit.ImpactPoint, FVector(5, 5, 5), FColor::Emerald, false, 2.0f);
 
 		AActor* Interacting = Hit.GetActor(); // get the Actor we hit with our line
 
 
 		if (Interacting) { // if we've hit an interactable actor...
 
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("Interacting"));
+			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("Interacting"));
 
 
 			if (Interacting != FocusedActor) { // if the hit isn't already our FocusedActor ...
@@ -107,6 +107,8 @@ void AMotionControllerPawn::LineCast_Implementation() {
 
 				// the focused actor is now the actor we just hit
 				FocusedActor = Interacting;
+				//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("focusedactor set"));
+
 
 			}
 
@@ -125,7 +127,7 @@ void AMotionControllerPawn::LineCast_Implementation() {
 
 			// remove the value for FocusedActor ("reset" it by setting it to null)
 			FocusedActor = nullptr;
-
+			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, TEXT("focusedactor null"));
 		}
 	}
 
@@ -142,10 +144,13 @@ void AMotionControllerPawn::InteractPressed()
 
 
 	if (FocusedActor) { // if we have something set for our FocusedActor...
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, TEXT("something normal"));
+		//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, FString::Printf( TEXT("actor: %s"), *GetActorLocation().ToString()));
 
 		// Use InteractInterface to execute OnInteract (do whatever we wanna do to interact with it)
 		IInteractInterface* Interface = Cast<IInteractInterface>(FocusedActor);
 		if (Interface) {
+			//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Cyan, TEXT("poopy"));
 			//DrawDebugSphere(GetWorld(), End, 10.0f, 200.0f, FColor::Yellow, false, 2.0f);
 			Interface->Execute_OnInteract(FocusedActor);
 		}
