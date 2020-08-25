@@ -7,6 +7,8 @@
 #include "InteractInterface.h"
 #include "Interactable.generated.h"
 
+// This class is made to demonstrate the most basic functionality of an interactable object
+
 UCLASS()
 class DEMO_ROOM_API AInteractable : public AActor, public IInteractInterface
 {
