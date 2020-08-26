@@ -49,8 +49,3 @@ void ACanForceGrab::Grab(FVector Location)
 void ACanForceGrab::Push(FVector Direction)
 {
 }
-
-// Hold the object
-void ACanForceGrab::Hold()
-{
-}

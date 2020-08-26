@@ -8,7 +8,7 @@
 #include "CanForceGrab.generated.h"
 
 UCLASS()
-class DEMO_ROOM_API ACanForceGrab : public AActor, public IInteractInterface
+class DEMO_ROOM_API ACanForceGrab : public AActor, public IInteractInterface //, public IPickupActor (THIS IS A GRABBABLE OBJECT)
 {
 	GENERATED_BODY()
 	
@@ -38,8 +38,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Interaction")
 	void Push(FVector Direction);
 
-	UFUNCTION(BlueprintCallable, Category = "Interaction")
-	void Hold();
+	// LATER INCLUDE FUNCTIONS FROM THE PICK UP ACTOR INTERFACE
 
 protected:
 	// Called when the game starts or when spawned
