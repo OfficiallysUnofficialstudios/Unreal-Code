@@ -18,23 +18,28 @@ public:
 
 	// Functions we inherited from the interface (that we'll customize in CanForceGrab.cpp)
 
+	// What to do when we interact with this object
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	void OnInteract();
-	virtual void OnInteract_Implementation();
+	void OnInteract(FHitResult HitResult, AActor* Caller);
+	virtual void OnInteract_Implementation(FHitResult HitResult, AActor* Caller);
 
+	// What to do when we look at this object
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
 	void StartFocus();
 	virtual void StartFocus_Implementation();
 
+	// What to do when we stop looking at this object
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
 	void EndFocus();
 	virtual void EndFocus_Implementation();
 
 	// Functions that will handle the stages of force grabbing
 
+	// Bring the object towards the player
 	UFUNCTION(BlueprintCallable, Category = "Interaction")
 	void Grab(FVector Location);
 
+	// Push the object forward
 	UFUNCTION(BlueprintCallable, Category = "Interaction")
 	void Push(FVector Direction);
 

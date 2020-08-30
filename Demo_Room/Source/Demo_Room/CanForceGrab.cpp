@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "DrawDebugHelpers.h"
+#include "Math/Vector.h"
 #include "CanForceGrab.h"
 
 // Sets default values
@@ -25,9 +26,20 @@ void ACanForceGrab::Tick(float DeltaTime)
 
 }
 
-// What to do when we interact (call force grab)
-void ACanForceGrab::OnInteract_Implementation()
+// What to do when we interact with this object
+void ACanForceGrab::OnInteract_Implementation(FHitResult HitResult, AActor* Caller)
 {
+	FVector HitLocation = HitResult.ImpactPoint;
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("Hit Location: %s"), *HitLocation.ToString()));
+
+	FVector ActorLocation = Caller->GetActorLocation();
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Actor Location: %s"), *ActorLocation.ToString()));
+
+	DrawDebugLine(GetWorld(), HitLocation, ActorLocation, FColor::Magenta, false, 2.0f);
+
+	FVector PullDirection = HitLocation.operator-(ActorLocation);
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Cyan, FString::Printf(TEXT("Difference: %s"), *PullDirection.ToString()));
+
 }
 
 // What to do when we look at this object
