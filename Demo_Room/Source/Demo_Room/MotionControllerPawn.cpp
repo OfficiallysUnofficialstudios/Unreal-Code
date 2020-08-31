@@ -57,17 +57,18 @@ void AMotionControllerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInp
 // Casts a line forward in the world look for objects to interact with
 void AMotionControllerPawn::LineCast_Implementation() {
 
+	
+
 	FVector Location;
 	FRotator Rotation;
 
 	// this function updates Location and Rotation based on the player's POV in the world
 	GetController()->GetPlayerViewPoint(Location, Rotation);
-
+	
 	// we start at our current position in the world (Location)
 	// we take the vector of our rotation (the direction we're looking in)
 	// we multiply it by TraceDistance to essentially create a line of vision where we can detect objects in front of us at desired distance
 	FVector End = Location + (Rotation.Vector() * TraceDistance);
-
 	FCollisionQueryParams TraceParams; 	// these are some default parameters to use when casting line forward for now
 
 	// built-in basic line tracing function, returns a hit result (i.e. did we hit something?)
@@ -75,9 +76,10 @@ void AMotionControllerPawn::LineCast_Implementation() {
 	// https://docs.unrealengine.com/en-US/Engine/Physics/Tracing/Overview/index.html ,,, we may need to change it from line to other shape
 	bool IsHit = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECC_Visibility, TraceParams);
 
+
 	// drawing a line to see the cast
 	//DrawDebugLine(GetWorld(), Location, End, FColor::Blue, false, 2.0f);
-
+	
 	if (IsHit == true) {
 
 		// drawing a box to see the hit
