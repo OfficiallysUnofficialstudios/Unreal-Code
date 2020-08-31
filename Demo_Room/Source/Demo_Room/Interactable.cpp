@@ -11,22 +11,26 @@ AInteractable::AInteractable()
 
 }
 
-void AInteractable::OnInteract_Implementation()
+// What to do when we interact with this object
+void AInteractable::OnInteract_Implementation(FHitResult HitResult, AActor* Caller)
 {
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Cyan, TEXT("pooopoo"));
 	Destroy(); // just for now. intending to add force grab mechanic next.
 }
 
+// What to do when we look at this object
 void AInteractable::StartFocus_Implementation()
 {
 	// this function is filled out in blueprints (colour will change when focused on for now)
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("Start Focus"));
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("Start Focus"));
 
 }
 
+// What to do when we stop looking at this object
 void AInteractable::EndFocus_Implementation()
 {
 	// this function is filled out in blueprints (colour will change when focused on for now)
-	GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, TEXT("End Focus"));
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Orange, TEXT("End Focus"));
 
 }
 

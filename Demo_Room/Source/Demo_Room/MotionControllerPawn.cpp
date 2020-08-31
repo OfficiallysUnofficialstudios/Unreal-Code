@@ -8,8 +8,9 @@
 #include "GameFramework/Controller.h"
 #include "DrawDebugHelpers.h"
 
-#include "InteractInterface.h" // literally dont know why this wouldnt work without the extra directories but ok
+#include "InteractInterface.h"
 #include "Interactable.h"
+#include "CanForceGrab.h"
 
 // Sets default values
 AMotionControllerPawn::AMotionControllerPawn()
@@ -53,11 +54,11 @@ void AMotionControllerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInp
 
 // LINE CAST & INTERACT ---------------------------------------------------------------------------------------------------------------- //
 
+// Casts a line forward in the world look for objects to interact with
 void AMotionControllerPawn::LineCast_Implementation() {
 
 	FVector Location;
 	FRotator Rotation;
-	FHitResult Hit;
 
 	// this function updates Location and Rotation based on the player's POV in the world
 	GetController()->GetPlayerViewPoint(Location, Rotation);
@@ -72,27 +73,27 @@ void AMotionControllerPawn::LineCast_Implementation() {
 	// built-in basic line tracing function, returns a hit result (i.e. did we hit something?)
 	// ECC_Visibility is a line trace channel, see different trace channels (what you want to hit) in capsule collision settings
 	// https://docs.unrealengine.com/en-US/Engine/Physics/Tracing/Overview/index.html ,,, we may need to change it from line to other shape
-	bool HitResult = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECC_Visibility, TraceParams); 
-	DrawDebugLine(GetWorld(), Location, End, FColor::Blue, false, 2.0f);
+	bool IsHit = GetWorld()->LineTraceSingleByChannel(Hit, Location, End, ECC_Visibility, TraceParams);
 
-	if (HitResult == true) {
+	// drawing a line to see the cast
+	//DrawDebugLine(GetWorld(), Location, End, FColor::Blue, false, 2.0f);
 
-		// drawing a box to see the hit for now
-		DrawDebugBox(GetWorld(), Hit.ImpactPoint, FVector(5, 5, 5), FColor::Emerald, false, 2.0f);
+	if (IsHit == true) {
+
+		// drawing a box to see the hit
+		//DrawDebugBox(GetWorld(), Hit.ImpactPoint, FVector(5, 5, 5), FColor::Emerald, false, 2.0f);
 
 		AActor* Interacting = Hit.GetActor(); // get the Actor we hit with our line
 
 
 		if (Interacting) { // if we've hit an interactable actor...
 
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Green, TEXT("Interacting"));
-
-
 			if (Interacting != FocusedActor) { // if the hit isn't already our FocusedActor ...
 
 				if (FocusedActor) { // if we have a FocusedActor ...
 
 					// stop focusing on the focused actor (cast to interface so it can use EndFocus)
+					// check if the actor uses InteractInterface, if so, it's an interactable object and we can call its interact functions using the interface
 					IInteractInterface* Interface = Cast<IInteractInterface>(FocusedActor);
 					if (Interface) {
 						Interface->Execute_EndFocus(FocusedActor);
@@ -125,29 +126,25 @@ void AMotionControllerPawn::LineCast_Implementation() {
 
 			// remove the value for FocusedActor ("reset" it by setting it to null)
 			FocusedActor = nullptr;
-
 		}
 	}
 
 }
 
 
+// Called when we want to interact with an object
 // Currently bound to mouse click (click to interact with an object you focus on)
 void AMotionControllerPawn::InteractPressed()
 {
 
 	LineCast(); // call LineCast to make a line forward and set the variables we want
 
-	//DrawDebugSphere(GetWorld(), End, 10.0f, 200.0f, FColor::Red, false, 2.0f);
-
-
 	if (FocusedActor) { // if we have something set for our FocusedActor...
 
 		// Use InteractInterface to execute OnInteract (do whatever we wanna do to interact with it)
 		IInteractInterface* Interface = Cast<IInteractInterface>(FocusedActor);
 		if (Interface) {
-			//DrawDebugSphere(GetWorld(), End, 10.0f, 200.0f, FColor::Yellow, false, 2.0f);
-			Interface->Execute_OnInteract(FocusedActor);
+			Interface->Execute_OnInteract(FocusedActor, Hit, this);
 		}
 	}
 

@@ -7,8 +7,10 @@
 #include "InteractInterface.h"
 #include "Interactable.generated.h"
 
+// This class is made to demonstrate the most basic functionality of an interactable object
+
 UCLASS()
-class DEMO_ROOM_API AInteractable : public AActor
+class DEMO_ROOM_API AInteractable : public AActor, public IInteractInterface
 {
 	GENERATED_BODY()
 	
@@ -16,16 +18,19 @@ public:
 	// Sets default values for this actor's properties
 	AInteractable();
 
-	// declaring inherited functions (from interface)
+	// Functions we inherited from the interface (that we'll customize in Interactable.cpp)
 
+	// What to do when we interact with this object
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	void OnInteract();
-	virtual void OnInteract_Implementation();
+	void OnInteract(FHitResult HitResult, AActor* Caller);
+	virtual void OnInteract_Implementation(FHitResult HitResult, AActor* Caller);
 
+	// What to do when we look at this object
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
 	void StartFocus();
 	virtual void StartFocus_Implementation();
 
+	// What to do when we stop looking at this object
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
 	void EndFocus();
 	virtual void EndFocus_Implementation();
