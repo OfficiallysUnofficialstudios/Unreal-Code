@@ -24,6 +24,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player")
 	UStaticMeshComponent* MeshComp;
 
+	//
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FVector Location;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FRotator Rotation;
+
+
 	// Casts a line forward in the world look for objects to interact with
 	UFUNCTION(BlueprintNativeEvent) // blueprint native because apparently it might actually be easier to edit in blueprints as things get more complicated
 	void LineCast();

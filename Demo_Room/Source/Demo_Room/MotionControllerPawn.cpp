@@ -57,14 +57,6 @@ void AMotionControllerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInp
 // Casts a line forward in the world look for objects to interact with
 void AMotionControllerPawn::LineCast_Implementation() {
 
-	
-
-	FVector Location;
-	FRotator Rotation;
-
-	// this function updates Location and Rotation based on the player's POV in the world
-	GetController()->GetPlayerViewPoint(Location, Rotation);
-	
 	// we start at our current position in the world (Location)
 	// we take the vector of our rotation (the direction we're looking in)
 	// we multiply it by TraceDistance to essentially create a line of vision where we can detect objects in front of us at desired distance
@@ -78,7 +70,7 @@ void AMotionControllerPawn::LineCast_Implementation() {
 
 
 	// drawing a line to see the cast
-	//DrawDebugLine(GetWorld(), Location, End, FColor::Blue, false, 2.0f);
+	// DrawDebugLine(GetWorld(), Location, End, FColor::Blue, false, 2.0f);
 	
 	if (IsHit == true) {
 
