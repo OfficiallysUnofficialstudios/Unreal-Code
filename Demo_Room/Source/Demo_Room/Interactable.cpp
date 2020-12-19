@@ -15,7 +15,6 @@ AInteractable::AInteractable()
 void AInteractable::OnInteract_Implementation(FHitResult HitResult, AActor* Caller)
 {
 	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Cyan, TEXT("pooopoo"));
-	Destroy(); // just for now. intending to add force grab mechanic next.
 }
 
 // What to do when we look at this object
