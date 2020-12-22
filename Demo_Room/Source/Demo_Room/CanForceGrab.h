@@ -35,13 +35,15 @@ public:
 
 	// Functions that will handle the stages of force grabbing
 
-	// Bring the object towards the player
-	UFUNCTION(BlueprintCallable, Category = "Interaction")
-	void Grab(FVector Location);
+	// Drop the object
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
+	void Drop();
+	virtual void Drop_Implementation();
 
 	// Push the object forward
-	UFUNCTION(BlueprintCallable, Category = "Interaction")
-	void Push(FVector Direction);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
+	void Push();
+	virtual void Push_Implementation();
 
 	// LATER INCLUDE FUNCTIONS FROM THE PICK UP ACTOR INTERFACE
 

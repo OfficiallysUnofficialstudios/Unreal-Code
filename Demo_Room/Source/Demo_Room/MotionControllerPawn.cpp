@@ -48,6 +48,7 @@ void AMotionControllerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInp
 
 	PlayerInputComponent->BindAction("OnInteract", IE_Pressed, this, &AMotionControllerPawn::InteractPressed);
 
+
 }
 
 

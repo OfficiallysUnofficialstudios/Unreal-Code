@@ -56,11 +56,13 @@ void ACanForceGrab::EndFocus_Implementation()
 }
 
 // Bring the object towards the player
-void ACanForceGrab::Grab(FVector Location)
+void ACanForceGrab::Drop_Implementation()
 {
+	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Cyan, TEXT("Drop"));
 }
 
 // Push the object forward
-void ACanForceGrab::Push(FVector Direction)
+void ACanForceGrab::Push_Implementation()
 {
+	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Orange, TEXT("Push"));
 }
