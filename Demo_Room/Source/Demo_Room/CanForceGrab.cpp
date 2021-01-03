@@ -31,9 +31,6 @@ void ACanForceGrab::Tick(float DeltaTime)
 // What to do when we interact with this object
 void ACanForceGrab::OnInteract_Implementation(FHitResult HitResult, AActor* Caller)
 {
-
-	ObjectAttached = false;
-
 	// just random debug drawing stuff from earlier
 	//FVector HitLocation = HitResult.ImpactPoint;
 	//GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Orange, FString::Printf(TEXT("Hit Location: %s"), *HitLocation.ToString()));
@@ -61,12 +58,13 @@ void ACanForceGrab::EndFocus_Implementation()
 // Bring the object towards the player
 void ACanForceGrab::Drop_Implementation()
 {
+	//ObjectAttached = false;
 	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Cyan, TEXT("Drop"));
-	ObjectAttached = false;
 }
 
 // Push the object forward
 void ACanForceGrab::Push_Implementation()
 {
+	//ObjectAttached = false;
 	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Orange, TEXT("Push"));
 }
