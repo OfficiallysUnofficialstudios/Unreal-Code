@@ -45,6 +45,10 @@ public:
 	void Push();
 	virtual void Push_Implementation();
 
+	// If something is in player's hand (we have force grabbed successfully)
+	UPROPERTY(BlueprintReadWrite)
+	bool ObjectAttached;
+
 	// LATER INCLUDE FUNCTIONS FROM THE PICK UP ACTOR INTERFACE
 
 protected:

@@ -32,6 +32,7 @@ void ACanForceGrab::Tick(float DeltaTime)
 void ACanForceGrab::OnInteract_Implementation(FHitResult HitResult, AActor* Caller)
 {
 
+	ObjectAttached = false;
 
 	// just random debug drawing stuff from earlier
 	//FVector HitLocation = HitResult.ImpactPoint;
@@ -61,6 +62,7 @@ void ACanForceGrab::EndFocus_Implementation()
 void ACanForceGrab::Drop_Implementation()
 {
 	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Cyan, TEXT("Drop"));
+	ObjectAttached = false;
 }
 
 // Push the object forward
