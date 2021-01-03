@@ -9,16 +9,16 @@ class UStaticMeshComponent;
 class AInteractable;
 class ACanForceGrab;
 
-#include "VRPhysicsCharacter.generated.h"
+#include "PhysicsCharacter.generated.h"
 
 UCLASS()
-class DEMO_ROOM_API AVRPhysicsCharacter : public ACharacter
+class DEMO_ROOM_API APhysicsCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
-	AVRPhysicsCharacter();
+	APhysicsCharacter();
 
 	// Variable for the player's Mesh
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player")

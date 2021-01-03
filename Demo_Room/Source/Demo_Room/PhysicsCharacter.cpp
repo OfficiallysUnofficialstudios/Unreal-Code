@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "VRPhysicsCharacter.h"
+#include "PhysicsCharacter.h"
 
 #include "Components/StaticMeshComponent.h"
 #include "Components/InputComponent.h"
@@ -13,7 +13,7 @@
 #include "CanForceGrab.h"
 
 // Sets default values
-AVRPhysicsCharacter::AVRPhysicsCharacter()
+APhysicsCharacter::APhysicsCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -23,14 +23,14 @@ AVRPhysicsCharacter::AVRPhysicsCharacter()
 }
 
 // Called when the game starts or when spawned
-void AVRPhysicsCharacter::BeginPlay()
+void APhysicsCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 // Called every frame
-void AVRPhysicsCharacter::Tick(float DeltaTime)
+void APhysicsCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
@@ -40,15 +40,15 @@ void AVRPhysicsCharacter::Tick(float DeltaTime)
 }
 
 // Called to bind functionality to input
-void AVRPhysicsCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void APhysicsCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
-	PlayerInputComponent->BindAction("OnInteract", IE_Pressed, this, &AVRPhysicsCharacter::InteractPressed);
+	PlayerInputComponent->BindAction("OnInteract", IE_Pressed, this, &APhysicsCharacter::InteractPressed);
 
 }
 
-void AVRPhysicsCharacter::LineCast_Implementation() {
+void APhysicsCharacter::LineCast_Implementation() {
 	// we start at our current position in the world (Location)
 	// we take the vector of our rotation (the direction we're looking in)
 	// we multiply it by TraceDistance to essentially create a line of vision where we can detect objects in front of us at desired distance
@@ -62,7 +62,8 @@ void AVRPhysicsCharacter::LineCast_Implementation() {
 
 
 	// drawing a line to see the cast
-	// DrawDebugLine(GetWorld(), Location, End, FColor::Blue, false, 2.0f);
+	//DrawDebugLine(GetWorld(), Location, End, FColor::Blue, true, 2.0f);
+	//GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Yellow, TEXT("Some debug message!"));
 
 	if (IsHit == true) {
 
@@ -118,7 +119,7 @@ void AVRPhysicsCharacter::LineCast_Implementation() {
 
 // Called when we want to interact with an object
 // Currently bound to mouse click (click to interact with an object you focus on)
-void AVRPhysicsCharacter::InteractPressed()
+void APhysicsCharacter::InteractPressed()
 {
 
 	LineCast(); // call LineCast to make a line forward and set the variables we want
