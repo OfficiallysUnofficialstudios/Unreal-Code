@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "DestructibleEntity.h"
 
 class UStaticMeshComponent;
 class AInteractable;
