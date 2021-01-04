@@ -8,7 +8,7 @@
 #include "CanForceGrab.generated.h"
 
 UCLASS()
-class DEMO_ROOM_API ACanForceGrab : public AActor, public IInteractInterface //, public IPickupActor (THIS IS A GRABBABLE OBJECT)
+class DEMO_ROOM_API ACanForceGrab : public AActor, public IInteractInterface
 {
 	GENERATED_BODY()
 	
@@ -16,7 +16,7 @@ public:
 	// Sets default values for this actor's properties
 	ACanForceGrab();
 
-	// Functions we inherited from the interface (that we'll customize in CanForceGrab.cpp)
+	// Functions inherited from the interact interface
 
 	// What to do when we interact with this object
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
@@ -33,12 +33,13 @@ public:
 	void EndFocus();
 	virtual void EndFocus_Implementation();
 
+
 	// Functions that will handle the stages of force grabbing
 
 	// Drop the object
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	void Drop();
-	virtual void Drop_Implementation();
+	void DropForceGrabbable();
+	virtual void DropForceGrabbable_Implementation();
 
 	// Push the object forward
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
