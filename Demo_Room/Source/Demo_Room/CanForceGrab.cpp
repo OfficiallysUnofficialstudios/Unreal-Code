@@ -68,3 +68,16 @@ void ACanForceGrab::Push_Implementation()
 	//ObjectAttached = false;
 	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Orange, TEXT("Push"));
 }
+
+FVector ACanForceGrab::CalculateUnitVector(FVector Vector) {
+
+	float magnitude = sqrt((Vector.X * Vector.X) + (Vector.Y * Vector.Y) + (Vector.Z * Vector.Z));
+
+	FVector result;
+
+	result.X = Vector.X / magnitude;
+	result.Y = Vector.Y / magnitude;
+	result.Z = Vector.Z / magnitude;
+
+	return result;
+}

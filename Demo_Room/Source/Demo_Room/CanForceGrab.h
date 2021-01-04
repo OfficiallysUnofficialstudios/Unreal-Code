@@ -45,6 +45,10 @@ public:
 	void Push();
 	virtual void Push_Implementation();
 
+	// Return unit vector given a vector
+	UFUNCTION(BlueprintCallable)
+	FVector CalculateUnitVector(FVector Vector);
+
 	// LATER INCLUDE FUNCTIONS FROM THE PICK UP ACTOR INTERFACE
 
 protected:
