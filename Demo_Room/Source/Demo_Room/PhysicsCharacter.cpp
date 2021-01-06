@@ -26,7 +26,6 @@ APhysicsCharacter::APhysicsCharacter()
 void APhysicsCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 // Called every frame

@@ -16,7 +16,9 @@ public:
 	ADestructibleEntity();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float Health;
+		float MaxHealth = 1;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float Health = 1;
 
 protected:
 	// Called when the game starts or when spawned

@@ -2,7 +2,6 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
 #include "DestructibleEntity.h"
 
 class UStaticMeshComponent;
@@ -12,7 +11,7 @@ class ACanForceGrab;
 #include "PhysicsCharacter.generated.h"
 
 UCLASS()
-class DEMO_ROOM_API APhysicsCharacter : public ACharacter
+class DEMO_ROOM_API APhysicsCharacter : public ADestructibleEntity
 {
 	GENERATED_BODY()
 
