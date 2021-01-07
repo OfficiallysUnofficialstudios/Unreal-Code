@@ -15,6 +15,8 @@ ADestructibleEntity::ADestructibleEntity()
 void ADestructibleEntity::BeginPlay()
 {
 	Super::BeginPlay();
+
+	OnTakeAnyDamage.AddDynamic(this, &ADestructibleEntity::TakeDamage);
 	
 }
 
@@ -32,3 +34,16 @@ void ADestructibleEntity::SetupPlayerInputComponent(UInputComponent* PlayerInput
 
 }
 
+void ADestructibleEntity::TakeDamage(AActor* DamagedActor, float Damage, const UDamageType* DamageType, AController* InstigatedBy, AActor* DamageCauser)
+{
+	Health = FMath::Clamp(Health - Damage, 0.0f, MaxHealth);
+
+	if (Health == 0) {
+		OnDeath();
+	}
+}
+
+void ADestructibleEntity::OnDeath_Implementation()
+{
+
+}
