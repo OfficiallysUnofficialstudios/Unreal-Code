@@ -94,6 +94,22 @@
 			"type": "boolean"
 		},
 		{
+			"name": "/actions/main/in/OnInteract",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/main/in/DropGun",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/main/in/Push",
+			"type": "boolean"
+		},
+		{
+			"name": "/actions/main/in/DropForceGrabbable",
+			"type": "boolean"
+		},
+		{
 			"name": "/actions/main/in/MotionControllerThumbLeft_X,MotionControllerThumbLeft_Y X Y_axis2d",
 			"type": "vector2"
 		},
@@ -224,6 +240,10 @@
 			"/actions/main/in/TeleportLeft": "TeleportLeft",
 			"/actions/main/in/GrabLeft": "GrabLeft",
 			"/actions/main/in/GrabRight": "GrabRight",
+			"/actions/main/in/OnInteract": "OnInteract",
+			"/actions/main/in/DropGun": "DropGun",
+			"/actions/main/in/Push": "Push",
+			"/actions/main/in/DropForceGrabbable": "DropForceGrabbable",
 			"/actions/main/in/MotionControllerThumbLeft_X,MotionControllerThumbLeft_Y X Y_axis2d": "MotionControllerThumbLeft",
 			"/actions/main/in/MotionControllerThumbRight_X,MotionControllerThumbRight_Y X Y_axis2d": "MotionControllerThumbRight",
 			"/actions/main/in/KeyboardRight axis": "KeyboardRight",

@@ -52,6 +52,58 @@
 					}
 				},
 				{
+					"mode": "button",
+					"path": "/user/hand/right/input/grip",
+					"inputs":
+					{
+						"click":
+						{
+							"output": "/actions/main/in/OnInteract"
+						}
+					}
+				},
+				{
+					"mode": "dpad",
+					"path": "/user/hand/right/input/trackpad",
+					"parameters":
+					{
+						"sub_mode": "click"
+					},
+					"inputs":
+					{
+						"north":
+						{
+							"output": "/actions/main/in/DropGun"
+						}
+					}
+				},
+				{
+					"mode": "button",
+					"path": "/user/hand/left/input/grip",
+					"inputs":
+					{
+						"click":
+						{
+							"output": "/actions/main/in/Push"
+						}
+					}
+				},
+				{
+					"mode": "dpad",
+					"path": "/user/hand/right/input/trackpad",
+					"parameters":
+					{
+						"sub_mode": "click"
+					},
+					"inputs":
+					{
+						"south":
+						{
+							"output": "/actions/main/in/DropForceGrabbable"
+						}
+					}
+				},
+				{
 					"mode": "trackpad",
 					"path": "/user/hand/left/input/trackpad",
 					"inputs":
