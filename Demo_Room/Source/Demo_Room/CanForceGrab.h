@@ -50,6 +50,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	FVector CalculateForceVectorInPlayerDirection(FVector Location, FVector ForwardVector, int Scope, int Magnitude);
 
+	UFUNCTION(BlueprintCallable)
+	FVector ScaleVectorForRecoil(FVector ShakeTrackVector, FVector Location, float Intensity, float TimeScale, FVector DirectionWhereLooking);
+
 	// LATER INCLUDE FUNCTIONS FROM THE PICK UP ACTOR INTERFACE
 
 protected:

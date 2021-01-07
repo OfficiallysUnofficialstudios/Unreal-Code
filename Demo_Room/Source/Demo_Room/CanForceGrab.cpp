@@ -4,6 +4,7 @@
 
 #include "DrawDebugHelpers.h"
 #include "Math/Vector.h"
+#include "GenericPlatform/GenericPlatformMath.h"
 
 
 // Sets default values
@@ -59,14 +60,14 @@ void ACanForceGrab::EndFocus_Implementation()
 void ACanForceGrab::DropForceGrabbable_Implementation()
 {
 	//ObjectAttached = false;
-	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Cyan, TEXT("Drop"));
+	//GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Cyan, TEXT("Drop"));
 }
 
 // Push the object forward
 void ACanForceGrab::Push_Implementation()
 {
 	//ObjectAttached = false;
-	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Orange, TEXT("Push"));
+	//GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Orange, TEXT("Push"));
 }
 
 FVector ACanForceGrab::CalculateForceVectorInPlayerDirection(FVector Location, FVector ForwardVector, int Scope, int Magnitude)
@@ -79,3 +80,20 @@ FVector ACanForceGrab::CalculateForceVectorInPlayerDirection(FVector Location, F
 
 	return Result;
 }
+
+FVector ACanForceGrab::ScaleVectorForRecoil(FVector ShakeTrackVector, FVector Location, float Intensity, float TimeScale, FVector RecoilDirection)
+{
+
+	ShakeTrackVector.X *= RecoilDirection.X * 100;
+	ShakeTrackVector.Y *= RecoilDirection.Y * 100;
+	ShakeTrackVector.Z *= RecoilDirection.Z * 100;
+
+	TimeScale = pow(TimeScale, Intensity);
+
+	ShakeTrackVector *= TimeScale;
+
+	FVector Result = ShakeTrackVector + Location;
+
+	return Result;
+}
+
