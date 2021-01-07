@@ -44,6 +44,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Interact")
 		float TraceDistance;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* InteractCaller;
+
 	// Hit result when we interact with something
 	FHitResult Hit;
 

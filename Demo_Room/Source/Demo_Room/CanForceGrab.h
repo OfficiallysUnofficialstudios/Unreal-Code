@@ -46,10 +46,11 @@ public:
 	void Push();
 	virtual void Push_Implementation();
 
-	// Return unit vector given a vector
+	// Gets vector of direction you're facing and scales it by given magnitudes
 	UFUNCTION(BlueprintCallable)
 	FVector CalculateForceVectorInPlayerDirection(FVector Location, FVector ForwardVector, int Scope, int Magnitude);
 
+	// Used to make intensity of recoil greater based on how far force grabbable is from player
 	UFUNCTION(BlueprintCallable)
 	FVector ScaleVectorForRecoil(FVector ShakeTrackVector, FVector Location, float Intensity, float TimeScale, FVector DirectionWhereLooking);
 

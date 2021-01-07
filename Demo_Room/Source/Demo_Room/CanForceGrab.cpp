@@ -84,9 +84,9 @@ FVector ACanForceGrab::CalculateForceVectorInPlayerDirection(FVector Location, F
 FVector ACanForceGrab::ScaleVectorForRecoil(FVector ShakeTrackVector, FVector Location, float Intensity, float TimeScale, FVector RecoilDirection)
 {
 
-	ShakeTrackVector.X *= RecoilDirection.X * 100;
-	ShakeTrackVector.Y *= RecoilDirection.Y * 100;
-	ShakeTrackVector.Z *= RecoilDirection.Z * 100;
+	ShakeTrackVector.X *= RecoilDirection.X * 200;
+	ShakeTrackVector.Y *= RecoilDirection.Y * 200;
+	ShakeTrackVector.Z *= RecoilDirection.Z * 200;
 
 	TimeScale = pow(TimeScale, Intensity);
 
