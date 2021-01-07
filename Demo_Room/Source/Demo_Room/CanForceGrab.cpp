@@ -69,15 +69,13 @@ void ACanForceGrab::Push_Implementation()
 	GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Orange, TEXT("Push"));
 }
 
-FVector ACanForceGrab::CalculateUnitVector(FVector Vector) {
+FVector ACanForceGrab::CalculateForceVectorInPlayerDirection(FVector Location, FVector ForwardVector, int Scope, int Magnitude)
+{
+	ForwardVector *= Scope;
+	ForwardVector += Location;
 
-	float magnitude = sqrt((Vector.X * Vector.X) + (Vector.Y * Vector.Y) + (Vector.Z * Vector.Z));
+	FVector Result = Location - ForwardVector;
+	Result *= Magnitude;
 
-	FVector result;
-
-	result.X = Vector.X / magnitude;
-	result.Y = Vector.Y / magnitude;
-	result.Z = Vector.Z / magnitude;
-
-	return result;
+	return Result;
 }

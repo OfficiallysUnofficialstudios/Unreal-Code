@@ -48,7 +48,7 @@ public:
 
 	// Return unit vector given a vector
 	UFUNCTION(BlueprintCallable)
-	FVector CalculateUnitVector(FVector Vector);
+	FVector CalculateForceVectorInPlayerDirection(FVector Location, FVector ForwardVector, int Scope, int Magnitude);
 
 	// LATER INCLUDE FUNCTIONS FROM THE PICK UP ACTOR INTERFACE
 
