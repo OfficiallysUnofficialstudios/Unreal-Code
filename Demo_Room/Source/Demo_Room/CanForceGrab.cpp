@@ -70,6 +70,11 @@ void ACanForceGrab::Push_Implementation()
 	//GEngine->AddOnScreenDebugMessage(-1, 0.5f, FColor::Orange, TEXT("Push"));
 }
 
+void ACanForceGrab::KeepObjectMovingToHand_Implementation() 
+{
+	// nothing to see here
+}
+
 FVector ACanForceGrab::CalculateForceVectorInPlayerDirection(FVector Location, FVector ForwardVector, int Scope, int Magnitude)
 {
 	ForwardVector *= Scope;

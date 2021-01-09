@@ -46,6 +46,11 @@ public:
 	void Push();
 	virtual void Push_Implementation();
 
+	// Make the object move towards you while force grabbing
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
+	void KeepObjectMovingToHand();
+	virtual void KeepObjectMovingToHand_Implementation();
+
 	// Gets vector of direction you're facing and scales it by given magnitudes
 	UFUNCTION(BlueprintCallable)
 	FVector CalculateForceVectorInPlayerDirection(FVector Location, FVector ForwardVector, int Scope, int Magnitude);
