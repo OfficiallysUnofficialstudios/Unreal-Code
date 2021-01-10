@@ -128,7 +128,7 @@ void APhysicsCharacter::InteractPressed()
 		// Use InteractInterface to execute OnInteract (do whatever we wanna do to interact with it)
 		IInteractInterface* Interface = Cast<IInteractInterface>(FocusedActor);
 		if (Interface) {
-			Interface->Execute_OnInteract(FocusedActor, Hit, this);
+			Interface->Execute_OnInteract(FocusedActor, Hit, InteractCaller);
 		}
 	}
 }
